@@ -121,60 +121,34 @@
 		</dependency>
 	</dependencies>
 
-		<build>
-		<finalName>${artifactId}</finalName>
+	<build>
+		<finalName>ms-token-proxy</finalName>
 		<plugins>
 			<plugin>
-					<groupId>cz.habarta.typescript-generator</groupId>
-					<artifactId>typescript-generator-maven-plugin</artifactId>
-					<version>2.9.456</version>
-					<executions>
-						<execution>
-							<id>generate</id>
-							<goals>
-								<goal>generate</goal>
-							</goals>
-							<phase>process-classes</phase>
-						</execution>
-					</executions>
-					<configuration>
-						<jsonLibrary>jackson2</jsonLibrary>
-						<classPatterns>
-							<pattern>${groupId}.**.dto.*</pattern>
-						</classPatterns>
-						<excludeClasses>
-							<class>java.io.Serializable</class>
-						</excludeClasses>
-						<outputFileType>implementationFile</outputFileType>
-						<outputFile>./target/${artifactId}.model.ts</outputFile>
-						<outputKind>module</outputKind>
-						<mapClasses>asClasses</mapClasses>
-						<typescriptEnums>true</typescriptEnums>
-						<mapEnum>asNumberBasedEnum</mapEnum>
-						<stringQuotes>singleQuotes</stringQuotes>
-					</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<addResources>true</addResources>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-		        <executions>
+				<executions>
 					<execution>
 						<goals>
 							<goal>repackage</goal>
 						</goals>
 					</execution>
-		        </executions>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
-					<skipTests>true</skipTests>
+					<nonFilteredFileExtensions>
+						<nonFilteredFileExtension>jks</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
 				</configuration>
 			</plugin>
 		</plugins>
