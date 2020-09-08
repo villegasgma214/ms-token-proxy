@@ -1,0 +1,44 @@
+server:
+ servlet:
+  contextPath: /token-proxy    
+ port: 9998
+ tomcat:
+  uri-encoding: UTF-8
+  max-http-post-size: 59475580
+# HTTP encoding (HttpEncodingProperties)
+spring:
+ application:
+  name: token-proxy
+ banner:
+  location: classpath:/banner.txt
+ servlet:
+  multipart:
+   maxFileSize: 59475580
+   maxRequestSize: 59475580
+ http:
+  encoding:
+   enabled: true
+   charset: UTF-8
+#Actuator
+info:
+ app:
+  name: ms-token-proxy
+  description: Modulo que contiene los servicios del token proxy
+  version: 1.0.0
+management:
+ endpoints:
+  web:
+   exposure:
+    include: info, *
+#locale
+default:
+ locale: America/Mexico_City
+
+# Oauth configuration
+oauth:
+ server:
+  token:
+   url: https://ms-oauth2-server.herokuapp.com/auth-server/oauth
+  security:
+   header: Authorization
+   secret: Basic YWRtaW5nZW50ZXJhOnBhc3N3b3Jk
